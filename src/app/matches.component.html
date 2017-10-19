@@ -1,0 +1,16 @@
+<div class="filters">
+    <mat-checkbox [(ngModel)]="enablePhotoFilter">Has photo</mat-checkbox>
+    <mat-checkbox [(ngModel)]="enableContactFilter">In contact</mat-checkbox>
+    <mat-checkbox [(ngModel)]="enableFavouriteFilter">Favourite</mat-checkbox>
+    <button mat-raised-button (click)="onFilterClick()">Filter</button>
+</div>
+<ul class="matches">
+  <li *ngFor="let match of matches"
+    [class.selected]="match === selectedMatch"
+    (click)="onSelect(match)">
+    <span class="badge">
+        <img *ngIf="match.main_photo" src="{{match.main_photo}}" width="100" height="45">
+    </span>
+    {{match.display_name}}
+  </li>
+</ul>
