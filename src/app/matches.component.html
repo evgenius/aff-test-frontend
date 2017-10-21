@@ -1,16 +1,68 @@
-<div class="filters">
-    <mat-checkbox [(ngModel)]="enablePhotoFilter">Has photo</mat-checkbox>
-    <mat-checkbox [(ngModel)]="enableContactFilter">In contact</mat-checkbox>
-    <mat-checkbox [(ngModel)]="enableFavouriteFilter">Favourite</mat-checkbox>
-    <button mat-raised-button (click)="onFilterClick()">Filter</button>
-</div>
-<ul class="matches">
-  <li *ngFor="let match of matches"
-    [class.selected]="match === selectedMatch"
-    (click)="onSelect(match)">
-    <span class="badge">
-        <img *ngIf="match.main_photo" src="{{match.main_photo}}" width="100" height="45">
-    </span>
-    {{match.display_name}}
-  </li>
-</ul>
+<mat-card>
+  <mat-card-title>Matches</mat-card-title>
+  <mat-card-content>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Filters</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <mat-card-subtitle>Compatibility</mat-card-subtitle>
+        <mat-card-content>
+          <app-slider type="double" [values]="comps" (value)="comp=$event"></app-slider>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Age</mat-card-subtitle>
+        <mat-card-content>
+          <app-slider type="double" [values]="ages" (value)="age=$event"></app-slider>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Has photo</mat-card-subtitle>
+        <mat-card-content>
+          <mat-slide-toggle [(ngModel)]="enablePhotoFilter"></mat-slide-toggle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>In contact</mat-card-subtitle>
+        <mat-card-content>
+          <mat-slide-toggle [(ngModel)]="enableContactFilter"></mat-slide-toggle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Favourite</mat-card-subtitle>
+        <mat-card-content>
+          <mat-slide-toggle [(ngModel)]="enableFavouriteFilter"></mat-slide-toggle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Height</mat-card-subtitle>
+        <mat-card-content>
+          <app-slider type="double" [values]="heights" (value)="height=$event"></app-slider>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Distance</mat-card-subtitle>
+        <mat-card-content>
+          <app-slider [values]="distances" (value)="distance=$event"></app-slider>
+        </mat-card-content>
+      </mat-card>
+      <mat-action-row>
+        <button mat-raised-button (click)="onFilterClick()">Filter</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-card-content>
+
+  <mat-card-content *ngFor="let match of matches">
+    <mat-card [class.selected]="match === selectedMatch"
+(click)="onSelect(match)">
+      <mat-card-subtitle>{{ match.display_name }}, {{match.age}}</mat-card-subtitle>
+      <mat-card-content>
+        <div class="image">
+          <img *ngIf="match.main_photo" src="{{match.main_photo}}" width="100" height="45">
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
