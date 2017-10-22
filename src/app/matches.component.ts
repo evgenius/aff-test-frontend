@@ -95,6 +95,7 @@ export class MatchesComponent implements OnInit {
   distance: SliderRange;
   location = LOCATIONS[0];
 
+  filtersPanelExpanded: boolean = false;
 
   constructor(private matchService: MatchService,
               public dialog: MatDialog) {}
@@ -135,10 +136,20 @@ export class MatchesComponent implements OnInit {
     this.matchService.getMatches(filters)
       .then(matches => this.matches = matches);
   }
+  collapseFilters(): void {
+    this.filtersPanelExpanded = false;
+    this.scrollToTop();
+  }
+  scrollToTop(): void {
+    (function () {
+      window.scrollTo(0, 0);
+    })();
+  }
   onSelect(match: Match): void {
     this.selectedMatch = match;
   }
   onFilterClick(): void {
+    this.collapseFilters();
     this.getMatches();
   }
   onLocationChange(): void {
