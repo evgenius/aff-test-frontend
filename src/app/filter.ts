@@ -42,7 +42,7 @@ export class HeightFilter implements Filter {
 }
 
 export class DistanceFilter implements Filter {
-  constructor(private lat: string, private lon: string, private distance: string) {}
+  constructor(private lat: number, private lon: number, private distance: string) {}
   getValue(): string {
     return "distance:" + this.lat + ":" + this.lon + ":" + this.distance;
   }

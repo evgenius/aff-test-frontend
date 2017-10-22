@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MatSlideToggleModule,
-         MatInputModule,
+         MatInputModule, MatSelectModule,
          MatButtonModule, MatGridListModule,
          MatDialogModule, MatExpansionModule } from '@angular/material';
 
@@ -29,6 +29,7 @@ import { SliderModule } from './modules/slider/slider.module';
     MatGridListModule,
     MatSlideToggleModule,
     MatInputModule,
+    MatSelectModule,
     MatButtonModule,
     MatExpansionModule,
     MatDialogModule,

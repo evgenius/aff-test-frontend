@@ -40,7 +40,6 @@ for (var i = MIN_HEIGHT; i <= MAX_HEIGHT; i++) {
 }
 HEIGHTS['> ' + MAX_HEIGHT + ' cm'] = -1;
 
-
 var DISTANCES = {
   '< 30 km': 30,
   '100 km': 100,
@@ -48,6 +47,26 @@ var DISTANCES = {
   '300 km': 300,
   '> 300 km': -1,
 };
+
+const LOCATIONS = [
+  { "name": "London", "lat": 51.509865, "lon": -0.118092 },
+  { "name": "Leeds", "lat": 53.801277, "lon": -1.548567 },
+  { "name": "Solihull", "lat": 52.412811, "lon": -1.778197 },
+  { "name": "Cardiff", "lat": 51.481583, "lon": -3.179090 },
+  { "name": "Eastbourne", "lat": 50.768036, "lon": 0.290472 },
+  { "name": "Swindon", "lat": 51.568535, "lon": -1.772232 },
+  { "name": "Oxford", "lat": 51.752022, "lon": -1.257677 },
+  { "name": "Salisbury", "lat": 51.068787, "lon": -1.794472 },
+  { "name": "Weymouth", "lat": 50.614429, "lon": -2.457621 },
+  { "name": "Bournemouth", "lat": 50.720806, "lon": -1.904755 },
+  { "name": "Plymouth", "lat": 50.376289, "lon": -4.143841 },
+  { "name": "Inverness", "lat": 57.477772, "lon": -4.224721 },
+  { "name": "Aberdeen", "lat": 57.149651, "lon": -2.099075 },
+  { "name": "Ayr", "lat": 55.458565, "lon": -4.629179 },
+  { "name": "Belfast", "lat": 54.607868, "lon": -5.926437 },
+  { "name": "Londonderry", "lat": 55.006763, "lon": -7.318268 },
+  { "name": "Harlow", "lat": 51.772938, "lon": 0.102310 },
+];
 
 @Component({
   selector: 'matches',
@@ -68,11 +87,13 @@ export class MatchesComponent implements OnInit {
   ages = Object.keys(AGES);
   heights = Object.keys(HEIGHTS);
   distances = Object.keys(DISTANCES);
+  locations = LOCATIONS;
 
   comp: SliderRange;
   age: SliderRange;
   height: SliderRange;
   distance: SliderRange;
+  location = LOCATIONS[0];
 
   filters: Filter[] = [];
 
@@ -114,8 +135,14 @@ export class MatchesComponent implements OnInit {
       this.filters.push(new AgeFilter(this.age.from, this.age.to));
     }
     if (this.distance) {
-      this.filters.push(new DistanceFilter('0', '0', DISTANCES[this.distance.from]));
+      filters.push(new DistanceFilter(
+        this.location.lat,
+        this.location.lon,
+        DISTANCES[this.distance.from]));
     }
+    this.getMatches();
+  }
+  onLocationChange(): void {
     this.getMatches();
   }
 }
