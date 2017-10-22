@@ -63,6 +63,10 @@
     </mat-expansion-panel>
   </mat-card-content>
 
+  <mat-card-content>
+    Found: {{matches.length}} results
+  </mat-card-content>
+
   <mat-card-content *ngFor="let match of matches">
     <a (click)="openDialog()">
       <mat-card [class.selected]="match === selectedMatch" (click)="onSelect(match)">

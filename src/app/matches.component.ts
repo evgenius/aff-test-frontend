@@ -76,7 +76,7 @@ const LOCATIONS = [
 })
 
 export class MatchesComponent implements OnInit {
-  matches: Match[];
+  matches: Match[] = [];
   selectedMatch: Match;
 
   enablePhotoFilter: boolean = false;
