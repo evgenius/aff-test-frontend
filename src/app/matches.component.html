@@ -55,14 +55,15 @@
   </mat-card-content>
 
   <mat-card-content *ngFor="let match of matches">
-    <mat-card [class.selected]="match === selectedMatch"
-(click)="onSelect(match)">
-      <mat-card-subtitle>{{ match.display_name }}, {{match.age}}</mat-card-subtitle>
-      <mat-card-content>
-        <div class="image">
-          <img *ngIf="match.main_photo" src="{{match.main_photo}}" width="100" height="45">
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <a (click)="openDialog()">
+      <mat-card [class.selected]="match === selectedMatch" (click)="onSelect(match)">
+        <mat-card-subtitle>{{ match.display_name }}, {{match.age}}</mat-card-subtitle>
+        <mat-card-content>
+          <div class="image">
+            <img *ngIf="match.main_photo" src="{{match.main_photo}}" width="100" height="45">
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </a>
   </mat-card-content>
 </mat-card>

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{data.match.display_name}}</h2>
+<mat-dialog-content>
+  <section *ngIf="data.match.main_photo">
+    <img src="{{data.match.main_photo}}" width="50%" height="50%" />
+  </section>
+  <section>
+    <mat-form-field><input matInput placeholder="Job" value="{{data.match.job_title}}" disabled="disabled" /></mat-form-field>
+    <mat-form-field><input matInput placeholder="City" value="{{data.match.city.name}}" disabled="disabled" /></mat-form-field>
+    <mat-form-field><input matInput placeholder="Religion" value="{{data.match.religion}}" disabled="disabled" /></mat-form-field>
+  </section>
+  <section>
+    <mat-form-field><input matInput placeholder="Age" value="{{data.match.age}}" disabled="disabled" /></mat-form-field>
+    <mat-form-field><input matInput placeholder="Height" value="{{data.match.height_in_cm}} cm" disabled="disabled" /></mat-form-field>
+    <mat-form-field><input matInput placeholder="Compatibility" value="{{data.match.compatibility_score * 100}}%" disabled="disabled" /></mat-form-field>
+  </section>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button [mat-dialog-close]="true">Close</button>
+</mat-dialog-actions>

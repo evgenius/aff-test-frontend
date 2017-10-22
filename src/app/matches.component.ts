@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Match } from './match'
 import { MatchService } from './match.service';
@@ -7,6 +8,7 @@ import { Filter, PhotoFilter, ContactFilter, FavouriteFilter,
          CompatibilityFilter, AgeFilter, DistanceFilter } from './filter'
 
 import { SliderRange } from './modules/slider/range';
+import { MatchDetailsDialog } from './match-details.component';
 
 declare var jquery: any;
 declare var $: any;
@@ -74,10 +76,18 @@ export class MatchesComponent implements OnInit {
 
   filters: Filter[] = [];
 
-  constructor(private matchService: MatchService) { }
+  constructor(private matchService: MatchService,
+              public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getMatches();
+  }
+  openDialog() {
+    this.dialog.open(MatchDetailsDialog, {
+      data: {
+        match: this.selectedMatch
+      }
+    });
   }
   getMatches(): void {
     this.matchService.getMatches(this.filters)
