@@ -95,7 +95,6 @@ export class MatchesComponent implements OnInit {
   distance: SliderRange;
   location = LOCATIONS[0];
 
-  filters: Filter[] = [];
 
   constructor(private matchService: MatchService,
               public dialog: MatDialog) {}
@@ -111,28 +110,21 @@ export class MatchesComponent implements OnInit {
     });
   }
   getMatches(): void {
-    this.matchService.getMatches(this.filters)
-      .then(matches => this.matches = matches);
-  }
-  onSelect(match: Match): void {
-    this.selectedMatch = match;
-  }
-  onFilterClick(): void {
-    this.filters = [];
+    let filters = [];
     if (this.enablePhotoFilter) {
-      this.filters.push(new PhotoFilter());
+      filters.push(new PhotoFilter());
     }
     if (this.enableContactFilter) {
-      this.filters.push(new ContactFilter());
+      filters.push(new ContactFilter());
     }
     if (this.enableFavouriteFilter) {
-      this.filters.push(new FavouriteFilter());
+      filters.push(new FavouriteFilter());
     }
     if (this.comp) {
-      this.filters.push(new CompatibilityFilter(this.comp.from, this.comp.to));
+      filters.push(new CompatibilityFilter(this.comp.from, this.comp.to));
     }
     if (this.age) {
-      this.filters.push(new AgeFilter(this.age.from, this.age.to));
+      filters.push(new AgeFilter(this.age.from, this.age.to));
     }
     if (this.distance) {
       filters.push(new DistanceFilter(
@@ -140,6 +132,13 @@ export class MatchesComponent implements OnInit {
         this.location.lon,
         DISTANCES[this.distance.from]));
     }
+    this.matchService.getMatches(filters)
+      .then(matches => this.matches = matches);
+  }
+  onSelect(match: Match): void {
+    this.selectedMatch = match;
+  }
+  onFilterClick(): void {
     this.getMatches();
   }
   onLocationChange(): void {
