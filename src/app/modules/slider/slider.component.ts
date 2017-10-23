@@ -13,7 +13,8 @@ export class SliderComponent {
   @Input() min: number;
   @Input() max: number;
   @Input() type: string = 'single';
-  @Input() values: string[];
+  @Input() from: any;
+  @Input() values: any[];
 
   @Output() value = new EventEmitter<SliderRange>();
 }

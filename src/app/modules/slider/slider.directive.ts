@@ -11,7 +11,8 @@ export class SliderDirective implements OnInit {
   @Input() min: number;
   @Input() max: number;
   @Input() type: string;
-  @Input() values: string[];
+  @Input() from: any;
+  @Input() values: any[];
 
   @Output() value = new EventEmitter<SliderRange>();
 
@@ -23,6 +24,7 @@ export class SliderDirective implements OnInit {
         type: this.type,
         min: this.min,
         max: this.max,
+        from: this.from,
         values: this.values,
         onFinish: (event) => {
           this.value.emit(new SliderRange(event.from_value, event.to_value));
