@@ -16,18 +16,6 @@
         <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
       <mat-card>
-        <mat-card-subtitle>Compatibility</mat-card-subtitle>
-        <mat-card-content>
-          <app-slider type="double" [values]="comps" (value)="comp=$event"></app-slider>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-subtitle>Age</mat-card-subtitle>
-        <mat-card-content>
-          <app-slider type="double" [values]="ages" (value)="age=$event"></app-slider>
-        </mat-card-content>
-      </mat-card>
-      <mat-card>
         <mat-card-subtitle>Has photo</mat-card-subtitle>
         <mat-card-content>
           <mat-slide-toggle [(ngModel)]="enablePhotoFilter"></mat-slide-toggle>
@@ -43,6 +31,18 @@
         <mat-card-subtitle>Favourite</mat-card-subtitle>
         <mat-card-content>
           <mat-slide-toggle [(ngModel)]="enableFavouriteFilter"></mat-slide-toggle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Compatibility</mat-card-subtitle>
+        <mat-card-content>
+          <app-slider type="double" [values]="comps" (value)="comp=$event"></app-slider>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-subtitle>Age</mat-card-subtitle>
+        <mat-card-content>
+          <app-slider type="double" [values]="ages" (value)="age=$event"></app-slider>
         </mat-card-content>
       </mat-card>
       <mat-card>
