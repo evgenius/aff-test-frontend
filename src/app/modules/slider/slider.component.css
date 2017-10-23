@@ -1,5 +1,5 @@
 @import "~ion-rangeslider/css/ion.rangeSlider.css";
-@import "~ion-rangeslider/css/ion.rangeSlider.skinFlat.css";
+@import "~ion-rangeslider/css/ion.rangeSlider.skinNice.css";
 
 .slider {
   max-width: 400px;
