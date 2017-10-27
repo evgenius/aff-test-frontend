@@ -6,9 +6,9 @@
     </section>
     <section *ngIf="showCommentInput">
       <mat-form-field>
-        <textarea matInput></textarea>
+        <textarea matInput [(ngModel)]="commentText"></textarea>
       </mat-form-field>
-      <button>Send</button>
+      <button (click)="sendCommentButtonClick()">Send</button>
     </section>
     <section *ngIf="!showCommentInput">
       <button (click)="commentButtonClick()">Comment</button>
