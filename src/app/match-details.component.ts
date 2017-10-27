@@ -8,4 +8,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class MatchDetailsDialog {
   constructor(public dialogRef: MatDialogRef<MatchDetailsDialog>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
- }
+
+  showCommentInput: boolean = false;
+
+  commentButtonClick(): void {
+    this.showCommentInput = true;
+  }
+}

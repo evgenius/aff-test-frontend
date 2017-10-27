@@ -1,7 +1,18 @@
 <h2 mat-dialog-title>{{data.match.display_name}}</h2>
 <mat-dialog-content>
   <section *ngIf="data.match.main_photo">
-    <img src="{{data.match.main_photo}}" width="50%" height="50%" />
+    <section>
+      <img src="{{data.match.main_photo}}" width="50%" height="50%" />
+    </section>
+    <section *ngIf="showCommentInput">
+      <mat-form-field>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <button>Send</button>
+    </section>
+    <section *ngIf="!showCommentInput">
+      <button (click)="commentButtonClick()">Comment</button>
+    </section>
   </section>
   <section>
     <mat-form-field><input matInput placeholder="Job" value="{{data.match.job_title}}" disabled="disabled" /></mat-form-field>
