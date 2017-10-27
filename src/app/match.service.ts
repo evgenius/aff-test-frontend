@@ -26,10 +26,15 @@ export class MatchService {
       .then(response => response.json().data as Match[])
       .catch(this.handleError)
   }
-  postComment(id: string, message: string): void {
+  getComments(userId: number): Promise<any> {
+    return this.http.get(this.getEndpoint(`/api/comments/${userId}`))
+      .toPromise()
+      .then(response => response.json().data as string[]);
+  }
+  postComment(userId: number, message: string): Promise<any> {
     const body = { message };
-    this.http.post(this.getEndpoint(`/api/comments/${id}`), body)
-        .subscribe(data => {});
+    return this.http.post(this.getEndpoint(`/api/comments/${userId}`), body)
+      .toPromise();
   }
   handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

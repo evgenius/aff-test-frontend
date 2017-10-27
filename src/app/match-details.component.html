@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{data.match.display_name}}</h2>
 <mat-dialog-content>
-  <section *ngIf="data.match.main_photo">
+  <section *ngIf="data.match.main_photo" style="margin-bottom: 1em;">
     <section>
       <img src="{{data.match.main_photo}}" width="50%" height="50%" />
     </section>
@@ -8,11 +8,17 @@
       <mat-form-field>
         <textarea matInput [(ngModel)]="commentText"></textarea>
       </mat-form-field>
-      <button (click)="sendCommentButtonClick()">Send</button>
+      <button mat-raised-button (click)="sendCommentButtonClick()">Send</button>
     </section>
     <section *ngIf="!showCommentInput">
-      <button (click)="commentButtonClick()">Comment</button>
+      <button mat-raised-button (click)="commentButtonClick()">Add comment</button>
     </section>
+    <mat-card *ngIf="comments.length > 0" style="margin-top: 1em; margin-bottom: 1em;">
+      <mat-card-subtitle>Comments</mat-card-subtitle>
+      <mat-card-content *ngFor="let comment of comments">
+        {{comment}}
+      </mat-card-content>
+    </mat-card>
   </section>
   <section>
     <mat-form-field><input matInput placeholder="Job" value="{{data.match.job_title}}" disabled="disabled" /></mat-form-field>

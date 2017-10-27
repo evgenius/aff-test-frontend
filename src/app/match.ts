@@ -1,4 +1,5 @@
 export class Match {
+  id: number;
   display_name: string;
   age: number;
   job_title: string;
