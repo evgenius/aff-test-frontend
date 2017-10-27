@@ -30,7 +30,7 @@ AGES['> ' + MAX_AGE] = -1;
 
 var COMPS = {};
 for (var i = MIN_COMP; i <= MAX_COMP; i++) {
-  COMPS[i + '%'] = i;
+  COMPS[i + '%'] = i / 100;
 }
 
 var HEIGHTS = {};
@@ -122,10 +122,14 @@ export class MatchesComponent implements OnInit {
       filters.push(new FavouriteFilter());
     }
     if (this.comp) {
-      filters.push(new CompatibilityFilter(this.comp.from, this.comp.to));
+      filters.push(new CompatibilityFilter(
+        COMPS[this.comp.from],
+        COMPS[this.comp.to]));
     }
     if (this.age) {
-      filters.push(new AgeFilter(this.age.from, this.age.to));
+      filters.push(new AgeFilter(
+        AGES[this.age.from],
+        AGES[this.age.to]));
     }
     if (this.distance) {
       filters.push(new DistanceFilter(
